@@ -11,6 +11,11 @@ function crearClasePersona() {
       // Inicializar las propiedades de la persona con los valores recibidos como argumento
 
       // Tu código aca:
+      this.nombre = nombre;
+      this.edad = edad;
+      // Utilizamos "|| []" en caso de que una de las propiedades sea undefined, para que se defina un array vacío como valor.
+      this.hobbies = hobbies || [];
+      this.amigos = amigos || [];
 
     }
 
@@ -20,7 +25,8 @@ function crearClasePersona() {
       // No debe retornar nada.
 
       // Tu código aca:
-
+      const newFriend = new Persona(nombre, edad);
+      this.amigos.push(newFriend);      
     }
 
     addHobby(hobby) {
@@ -28,7 +34,7 @@ function crearClasePersona() {
       // No debe retornar nada.
 
       // Tu código aca:
-
+      this.hobbies.push(hobby);
     }
     getFriends() {
       // El método 'getFriends' debe retornar un arreglo con sólo los nombres del arreglo de amigos
@@ -38,7 +44,13 @@ function crearClasePersona() {
       // persona.getFriends() debería devolver ['martin', 'toni']
 
       // Tu código aca:
+      var arrFriends = [];
+      for (let i=0; i<this.amigos.length; i++)
+      {
+        arrFriends.push(this.amigos[i].nombre);
+      }
 
+      return 'Amigos: ' + arrFriends;
     }
 
     getHobbies() {
@@ -47,7 +59,13 @@ function crearClasePersona() {
       // persona.getHobbies() debe devolver ['correr', 'dormir', 'nadar']
 
       // Tu código aca:
+      var arrHobbies = [];
+      for (let i=0; i<this.hobbies.length; i++)
+      {
+        arrHobbies.push(this.hobbies[i]);
+      }
 
+      return 'Hobbies: ' + arrHobbies;
     }
 
     getPromedioEdad() {
@@ -66,12 +84,25 @@ function crearClasePersona() {
       // persona.getPromedioEdad() debería devolver 29 ya que (33 + 25) / 2 = 29
 
       // Tu código aca:
+      var prom = 0;
 
+      for (let i=0; i<this.amigos.length; i++)
+      {
+        prom += (this.amigos[i].edad);
+      }
+
+      return 'Edad promedio de sus amigos: ' + parseInt(prom/this.amigos.length);
     }
   };
+  const pablo = new Persona('Pablo', 22)
+  pablo.addFriend('Otis', 71);
+  pablo.addFriend('Alan', 12);
+  pablo.addHobby('Taxidermy');
+  pablo.addHobby('Kidnapping');
 
-  return Persona;
+  return pablo.getPromedioEdad();
 }
+console.log(crearClasePersona());
 
 // No modifiques nada debajo de esta linea //
 
