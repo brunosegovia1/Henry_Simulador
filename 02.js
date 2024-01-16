@@ -12,7 +12,24 @@ function stringMasLarga(strings) {
   // stringMasLarga(['JavaScript', 'HTML', 'CSS']); debe retornar 'JavaScript'
 
   // Tu código aca
+  var comodin = '';
+
+  for (let i=0; i<strings.length; i++)
+  {
+    for (let e=0; e<strings.length-1; e++)
+    {
+      if (strings[e].length < strings[e+1].length)
+      {
+        comodin = strings[e];
+        strings[e] = strings[e+1];
+        strings[e+1] = comodin;
+      }
+    }
+  }
+
+  return strings[0];
 }
+console.log(stringMasLarga(['HTML', 'CSS', 'JavaScript']));
 
 // No modifiques nada debajo de esta linea //
 
