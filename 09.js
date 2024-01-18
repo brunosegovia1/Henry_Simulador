@@ -25,7 +25,52 @@ function filtrar(funcion) {
   //   return p.price >= 50;
   // }) => [{price: 100, name:'tv'}]
 
+  var resultado = [];
+
+  for (let i = 0; i < this.length; i++)
+  {
+    if (funcion.call(this[i]))
+    {
+      resultado.push(this[i]);
+    }
+  }
+
+  console.log('Personas mayores de 18: ');
+  return resultado;
 };
+
+var personas = 
+[
+  {
+    nombre: 'Luciano',
+    apellido: 'Castro',
+    edad: 51,
+    email: 'echechechecheche@gmail.com',
+  },
+  {
+    nombre: 'Alfonso',
+    apellido: 'Cuarón',
+    edad: 53,
+    email: 'oleoleolaaaa@gmail.com',
+  },
+  {
+    nombre: 'Gertrudis',
+    apellido: 'Gimenez',
+    edad: 5,
+    email: 'laralaliralailala@gmail.com',
+  },
+]
+
+function Callback ()
+{
+  return this.edad >= 18;
+}
+
+//agregando la función filtrar al prototipo de arrays
+Array.prototype.filtrar = filtrar;
+
+
+console.log(personas.filtrar(Callback));
 
 // No modifiques nada debajo de esta linea //
 
