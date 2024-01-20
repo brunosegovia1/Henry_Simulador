@@ -29,49 +29,78 @@ function filtrar(funcion) {
 
   for (let i = 0; i < this.length; i++)
   {
-    if (funcion.call(this[i]))
+    if (funcion(this[i]) === true)
     {
       resultado.push(this[i]);
     }
   }
 
-  console.log('Personas mayores de 18: ');
+  //console.log('Personas mayores de 18: ');
   return resultado;
 };
 
-var personas = 
-[
+//agregando la función filtrar al prototipo de arrays
+Array.prototype.filtrar = filtrar;
+/*
+
+var personas =[
   {
-    nombre: 'Luciano',
-    apellido: 'Castro',
-    edad: 51,
-    email: 'echechechecheche@gmail.com',
+    nombre: 'Emi',
+    edad: 21,
+    hobbies: ['correr', 'dormir', 'nadar'],
+    amigos: [
+      { 
+        nombre: 'Martin',
+      },{
+        nombre: 'Leo',
+      }
+    ],
+  }, {
+    nombre: 'Franco',
+    edad: 22,
+    hobbies: ['futbol', 'golf'],
+    amigos: [
+      {
+        nombre: 'Emi',
+      }, {
+        nombre: 'Jimmy',
+      }, {
+        nombre: 'Matias',
+      }
+    ],
   },
   {
-    nombre: 'Alfonso',
-    apellido: 'Cuarón',
-    edad: 53,
-    email: 'oleoleolaaaa@gmail.com',
+    nombre: 'Martin',
+    edad: 35,
+    hobbies: ['Cancha', 'emprender'],
+    amigos: [
+      {
+        nombre: 'Toni',
+      }, {
+        nombre: 'Leo',
+      }, {
+        nombre: 'Manu',
+      }
+    ],
   },
-  {
-    nombre: 'Gertrudis',
-    apellido: 'Gimenez',
-    edad: 5,
-    email: 'laralaliralailala@gmail.com',
-  },
-]
+];
 
 function Callback ()
 {
-  return this.edad >= 18;
+  return (this.edad <= 22);
 }
 
-//agregando la función filtrar al prototipo de arrays
-Array.prototype.filtrar = filtrar;
+
+// Utiliza la función filtrar para obtener el resultado y almacenarlo en una variable
+var resultadoFiltrado = personas.filtrar(Callback);
+
+// Imprime el resultado para verificar que es correcto
+console.log(resultadoFiltrado.length);
 
 
-console.log(personas.filtrar(Callback));
 
+
+*/
 // No modifiques nada debajo de esta linea //
 
 module.exports = filtrar
